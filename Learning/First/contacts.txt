@@ -1,0 +1,12 @@
+John Doe, 555-0199, john.doe@email.com, 123 Elm St
+Jane Smith, 555-0144, jane.smith@email.com, 456 Oak Ave
+Alex Jones, 555-0177, alex.j@email.com, 789 Pine Rd
+Emily Brown, 555-0122, emily.b@email.com, 321 Maple Dr
+Michael Green, 555-0155, m.green@email.com, 654 Cedar Ln
+Sarah White, 555-0188, sarah.w@email.com, 987 Birch Ct
+David Black, 555-0111, david.b@email.com, 147 Walnut St
+Lisa Blue, 555-0133, lisa.b@email.com, 258 Willow Way
+Kevin Grey, 555-0166, kevin.g@email.com, 369 Aspen Blvd
+Anna Pink, 555-0100, anna.p@email.com, 741 Cherry Pl
+Sarah Black, 555-0998, sarah.w@blabla.com, 907 Birch Ct
+Kali Black, 675-1234, kali.k@blabla.com, 987 New York Ct
