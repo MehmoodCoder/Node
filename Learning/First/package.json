@@ -1,0 +1,17 @@
+{
+  "name": "first",
+  "version": "1.0.0",
+  "description": "This is my first pakage.json file also a complete understanding of modules and Import Export",
+  "repository": {
+    "type": "git",
+    "url": "github.com/MehmoodCoder/Node"
+  },
+  "license": "ISC",
+  "author": "MehmoodCoder",
+  "type": "module",
+  "main": "modules.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node modules.js"
+  }
+}
