@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "create first http server with node to learn how to build server",
+  "repository": {
+    "type": "git",
+    "url": "github.com/MehmoodCoder/Node"
+  },
+  "license": "ISC",
+  "author": "MehmoodCoder",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  }
+}
