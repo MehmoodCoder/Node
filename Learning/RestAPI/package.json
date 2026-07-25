@@ -1,0 +1,23 @@
+{
+  "name": "restapi",
+  "version": "1.0.0",
+  "description": "First Project of Rest Api",
+  "keywords": [
+    "RestAPI"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "github.com/MehmoodCoder/Node"
+  },
+  "license": "ISC",
+  "author": "MehmoodCoder",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}
