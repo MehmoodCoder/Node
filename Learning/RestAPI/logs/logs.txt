@@ -1,0 +1,13 @@
+[26/07/2026, 1:26:46 pm] GET: /users/api IP : ::1
+[26/07/2026, 1:26:55 pm] GET: /users IP : ::1
+[26/07/2026, 2:12:35 pm] GET: /users IP : ::1
+[26/07/2026, 2:12:41 pm] GET: /users/api IP : ::1
+[26/07/2026, 2:12:54 pm] GET: /users/api/6a659cfb0f22ac812712d869 IP : ::1
+[26/07/2026, 2:13:45 pm] POST: /users/api IP : ::1
+[26/07/2026, 2:14:00 pm] GET: /users/api IP : ::1
+[26/07/2026, 2:14:17 pm] GET: /users/api/6a659cfb0f22ac812712d869 IP : ::1
+[26/07/2026, 2:14:27 pm] GET: /users IP : ::1
+[26/07/2026, 2:14:39 pm] PATCH: /users/api/6a659cfb0f22ac812712d869 IP : ::1
+[26/07/2026, 2:15:01 pm] GET: /users/api/6a659cfb0f22ac812712d869 IP : ::1
+[26/07/2026, 2:15:07 pm] GET: /users IP : ::1
+[26/07/2026, 2:15:12 pm] DELETE: /users/api/6a659cfb0f22ac812712d869 IP : ::1
