@@ -4,7 +4,7 @@ const router = express.Router();
 
 // This is for Browser User
 
-router.get("/users", async (req, res) => {
+router.get("/", async (req, res) => {
   const allDBUsers = await User.find({});
   const html = `
         <ul>
@@ -16,7 +16,7 @@ router.get("/users", async (req, res) => {
 
 // Rest API
 
-router.get("/users/api", async (req, res) => {
+router.get("/api", async (req, res) => {
   //  console.log("i also Have ", req.my);
   //  res.setHeader("MyOwnCookie", "Babar is the King of Cricket")
   //  Good practices : add x or X- before custom header so we can write as & never add spaces btw wods and char in set header name it throughs error
@@ -31,7 +31,7 @@ router.get("/users/api", async (req, res) => {
 // create route
 
 router
-  .route("/users/api/:id")
+  .route("/api/:id")
   .get(async (req, res) => {
     // :id !== id, :id means variable id or dynamic id
 
@@ -88,7 +88,7 @@ router
     // );
   });
 
-app.post("/users/api", async (req, res) => {
+app.post("/api", async (req, res) => {
   const body = req.body;
   console.log(body);
   if (

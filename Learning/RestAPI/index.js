@@ -2,6 +2,8 @@ import express from "express";
 import fs from "fs";
 // import users from "./MOCK_DATA.json" with { type: "json" };
 import mongoose from "mongoose";
+import UserRoutes from './routes/user.js'
+
 
 const app = express();
 const port = 3000;
@@ -76,6 +78,10 @@ app.use((req, res, next) => {
   //   console.log("Hello From MiddleWare 2", req.my);
   next();
 });
+
+// Route
+
+app.use("/users", UserRoutes)
 
 
 app.listen(port, () => console.log(`Server is started on ${port}`));
