@@ -1,7 +1,9 @@
 import express from "express";
 import fs from "fs";
-import users from "./MOCK_DATA.json" with { type: "json" };
+// import users from "./MOCK_DATA.json" with { type: "json" };
 import mongoose from "mongoose";
+import { timeStamp } from "console";
+import { allowedNodeEnvironmentFlags } from "process";
 
 const app = express();
 const port = 3000;
@@ -70,7 +72,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-});
+}, { timestamps : true });
 
 // Model of Schema
 
@@ -108,10 +110,11 @@ app.use((req, res, next) => {
 
 // This is for Browser User
 
-app.get("/users", (req, res) => {
+app.get("/users", async (req, res) => {
+  const allDBUsers = await User.find({})
   const html = `
         <ul>
-            ${users.map((user) => `<li>${user.first_name} ${user.last_name}</li>`)}
+            ${allDBUsers.map((user) => `<li>${user.firstName} ${user.lastName} - ${user.email}</li>`)}
         </ul>
     `;
   res.send(html);
@@ -119,63 +122,81 @@ app.get("/users", (req, res) => {
 
 // Rest API
 
-app.get("/users/api", (req, res) => {
+app.get("/users/api", async (req, res) => {
   //  console.log("i also Have ", req.my);
   //  res.setHeader("MyOwnCookie", "Babar is the King of Cricket")
   //  Good practices : add x or X- before custom header so we can write as & never add spaces btw wods and char in set header name it throughs error
   res.setHeader("X-MyOwnCookie", "Babar is the King of Cricket"); // better
   //   console.log(req.headers);
 
-  res.status(200).json(users);
+  const allDBUsers = await User.find({})
+
+  res.status(200).json(allDBUsers);
 });
 
 // create route
 
 app
   .route("/users/api/:id")
-  .get((req, res) => {
+  .get( async (req, res) => {
+
     // :id !== id, :id means variable id or dynamic id
-    const id = req.params.id;
-    const user = users.find((user) => user.id == id);
+
+    // const id = req.params.id;
+    // const user = users.find((user) => user.id == id);
+
+    const user = await User.findById(req.params.id)
+
     if (user) {
       res.status(200).json(user);
     } else {
       res.status(404).json({ msg: "User not Found" });
     }
   })
-  .patch((req, res) => {
-    res.status(501).json({ status: "pending" });
+  .patch( async (req, res) => {
+
+    await User.findByIdAndUpdate(req.params.id, { lastName : "Changed"})
+
+    res.status(200).json({ status: "success" });
   })
-  .delete((req, res) => {
+  .delete(async (req, res) => {
     const id = req.params.id;
+
+    if (!id) {
+      return res.status(404).json(id, "not found")
+    }
+
+    await User.findByIdAndDelete(id)
+    res.status(200).json({msg: "Deleted"})
+
     // const User = users.filter(user => user.id != id)
 
     // it needs server refresh so we use this way
 
-    const userIndex = users.findIndex((user) => user.id == id);
+    // const userIndex = users.findIndex((user) => user.id == id);
 
-    if (userIndex === -1) {
-      return res
-        .status(404)
-        .json({ status: "Error", message: "User not found" });
-    }
+    // if (userIndex === -1) {
+    //   return res
+    //     .status(404)
+    //     .json({ status: "Error", message: "User not found" });
+    // }
 
-    users.splice(userIndex, 1);
+    // users.splice(userIndex, 1);
 
-    fs.writeFile(
-      "./MOCK_DATA.json",
-      JSON.stringify(users, null, 2),
-      (error) => {
-        if (!error) {
-          res.status(200).json({ status: "deleted" });
-        } else {
-          res.status(404).json({ status: "pending" });
-        }
-      },
-    );
+    // fs.writeFile(
+    //   "./MOCK_DATA.json",
+    // JSON.stringify(users, null, 2),
+    //   (error) => {
+    //     if (!error) {
+    //       res.status(200).json({ status: "deleted" });
+    //     } else {
+    //       res.status(404).json({ status: "pending" });
+    //     }
+    //   },
+    // );
   });
 
-app.post("/users/api", (req, res) => {
+app.post("/users/api", async (req, res) => {
   const body = req.body;
   console.log(body);
   if (
@@ -188,15 +209,29 @@ app.post("/users/api", (req, res) => {
   ) {
     return res.status(400).json({ Message: "Field(s) missing" });
   }
-  users.push({ id: users.length + 1, ...body });
+  // now we use DB instead of
 
-  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users, null, 2), (error) => {
-    if (!error) {
-      res.status(201).json({ status: "success", id: `${users.length}` });
-    } else {
-      res.status(404).json({ status: "pending" });
-    }
-  });
+  const result = await User.create({
+    firstName : body.first_name,
+    lastName : body.last_name,
+    email: body.email,
+    gender: body.gender,
+    jobtitle: body.job_title,
+  })
+
+  console.log(result , "---");
+  
+  res.status(201).json({msg: 'success'})
+
+  // users.push({ id: users.length + 1, ...body });
+
+  // fs.writeFile("./MOCK_DATA.json", JSON.stringify(users, null, 2), (error) => {
+  //   if (!error) {
+  //     res.status(201).json({ status: "success", id: `${users.length}` });
+  //   } else {
+  //     res.status(404).json({ status: "pending" });
+  //   }
+  // });
 });
 
 // instead of it
