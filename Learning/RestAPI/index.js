@@ -1,9 +1,10 @@
 import express from "express";
-import fs from "fs";
+// import fs from "fs";
 // import users from "./MOCK_DATA.json" with { type: "json" };
 // import mongoose from "mongoose";
 import UserRoutes from "./routes/user.js";
 import connectDB from "./connection.js";
+import logReqRes from "./middlewares/middleware.js";
 
 const app = express();
 const port = 3000;
@@ -67,16 +68,18 @@ app.use(express.urlencoded({ extended: false }));
 
 // Middleware
 
-app.use((req, res, next) => {
-  //   console.log("Hello From MiddleWare 1");
-  req.my = "myMind";
-  next();
-});
+app.use(logReqRes("./logs/logs.txt"));
 
-app.use((req, res, next) => {
-  //   console.log("Hello From MiddleWare 2", req.my);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log("Hello From MiddleWare 1");
+//   req.my = "myMind";
+//   next();
+// });
+
+// app.use((req, res, next) => {
+//   console.log("Hello From MiddleWare 2", req.my);
+//   next();
+// });
 
 // Route
 
