@@ -18,7 +18,7 @@ router.get("/", GetAllUsersHTML);
 
 // They have same Route
 
-router.route("/api").get(GetAlUsersJson).post(PortUser);
+router.route("/api").get(GetAllUsersJson).post(PortUser);
 
 // router.get("/api", GetAlUsersJson);
 // router.post("/api", PortUser);
