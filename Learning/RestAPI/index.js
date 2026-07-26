@@ -49,35 +49,6 @@ db.users.find().pretty()
 
 */
 
-// Schema
-
-const userSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  gender: {
-    type: String,
-  },
-  jobtitle: {
-    type: String,
-    required: true,
-  },
-}, { timestamps : true });
-
-// Model of Schema
-
-const User = mongoose.model("user", userSchema);
-
 /*
  * NOTE: Development Server Setup
  * Installed 'nodemon' (npm i nodemon) for hot-reloading on code changes.
