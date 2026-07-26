@@ -1,131 +1,35 @@
 import express from "express";
-import User from "../models/user.js";
+import {
+  GetAllUsersHTML,
+  GetAllUsersJson,
+  GetUserById,
+  PatchUserById,
+  DeleteUserById,
+  PortUser,
+} from "../controllers/user.js";
 
 const router = express.Router();
 
 // This is for Browser User
 
-router.get("/", async (req, res) => {
-  const allDBUsers = await User.find({});
-  const html = `
-        <ul>
-            ${allDBUsers.map((user) => `<li>${user.firstName} ${user.lastName} - ${user.email}</li>`)}
-        </ul>
-    `;
-  res.send(html);
-});
+router.get("/", GetAllUsersHTML);
 
 // Rest API
 
-router.get("/api", async (req, res) => {
-  //  console.log("i also Have ", req.my);
-  //  res.setHeader("MyOwnCookie", "Babar is the King of Cricket")
-  //  Good practices : add x or X- before custom header so we can write as & never add spaces btw wods and char in set header name it throughs error
-  res.setHeader("X-MyOwnCookie", "Babar is the King of Cricket"); // better
-  //   console.log(req.headers);
+// They have same Route
 
-  const allDBUsers = await User.find({});
+router.route("/api").get(GetAlUsersJson).post(PortUser);
 
-  res.status(200).json(allDBUsers);
-});
+// router.get("/api", GetAlUsersJson);
+// router.post("/api", PortUser);
 
 // create route
 
 router
   .route("/api/:id")
-  .get(async (req, res) => {
-    // :id !== id, :id means variable id or dynamic id
-
-    // const id = req.params.id;
-    // const user = users.find((user) => user.id == id);
-
-    const user = await User.findById(req.params.id);
-
-    if (user) {
-      res.status(200).json(user);
-    } else {
-      res.status(404).json({ msg: "User not Found" });
-    }
-  })
-  .patch(async (req, res) => {
-    await User.findByIdAndUpdate(req.params.id, { lastName: "Changed" });
-
-    res.status(200).json({ status: "success" });
-  })
-  .delete(async (req, res) => {
-    const id = req.params.id;
-
-    if (!id) {
-      return res.status(404).json(id, "not found");
-    }
-
-    await User.findByIdAndDelete(id);
-    res.status(200).json({ msg: "Deleted" });
-
-    // const User = users.filter(user => user.id != id)
-
-    // it needs server refresh so we use this way
-
-    // const userIndex = users.findIndex((user) => user.id == id);
-
-    // if (userIndex === -1) {
-    //   return res
-    //     .status(404)
-    //     .json({ status: "Error", message: "User not found" });
-    // }
-
-    // users.splice(userIndex, 1);
-
-    // fs.writeFile(
-    //   "./MOCK_DATA.json",
-    // JSON.stringify(users, null, 2),
-    //   (error) => {
-    //     if (!error) {
-    //       res.status(200).json({ status: "deleted" });
-    //     } else {
-    //       res.status(404).json({ status: "pending" });
-    //     }
-    //   },
-    // );
-  });
-
-router.post("/api", async (req, res) => {
-  const body = req.body;
-  console.log(body);
-  if (
-    !body ||
-    !body.first_name ||
-    !body.last_name ||
-    !body.job_title ||
-    !body.email ||
-    !body.gender
-  ) {
-    return res.status(400).json({ Message: "Field(s) missing" });
-  }
-  // now we use DB instead of
-
-  const result = await User.create({
-    firstName: body.first_name,
-    lastName: body.last_name,
-    email: body.email,
-    gender: body.gender,
-    jobtitle: body.job_title,
-  });
-
-  console.log(result);
-
-  res.status(201).json({ msg: "success" });
-
-  // users.push({ id: users.length + 1, ...body });
-
-  // fs.writeFile("./MOCK_DATA.json", JSON.stringify(users, null, 2), (error) => {
-  //   if (!error) {
-  //     res.status(201).json({ status: "success", id: `${users.length}` });
-  //   } else {
-  //     res.status(404).json({ status: "pending" });
-  //   }
-  // });
-});
+  .get(GetUserById)
+  .patch(PatchUserById)
+  .delete(DeleteUserById);
 
 // instead of it
 
@@ -146,5 +50,4 @@ router.post("/api", async (req, res) => {
 
 // Now install Postman from postman.com to test delete, post, patch
 
-
-export default router
+export default router;
