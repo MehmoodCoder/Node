@@ -1,19 +1,18 @@
 import express from "express";
 import fs from "fs";
 // import users from "./MOCK_DATA.json" with { type: "json" };
-import mongoose from "mongoose";
-import UserRoutes from './routes/user.js'
-
+// import mongoose from "mongoose";
+import UserRoutes from "./routes/user.js";
+import connectDB from "./connection.js";
 
 const app = express();
 const port = 3000;
 
-// connect with DB
+// Connection to DB
 
-mongoose
-  .connect("mongodb://127.0.0.1:27017/my-first-db")
-  .then(() => console.log("DB is connected Successfully"))
-  .catch((e) => console.log("DB Error : ", e));
+connectDB("mongodb://127.0.0.1:27017/my-first-db")
+  .then(() => console.log("MongoDB Connected!"))
+  .catch((err) => console.log("Mongo Error:", err));
 
 /* 
 
@@ -81,7 +80,6 @@ app.use((req, res, next) => {
 
 // Route
 
-app.use("/users", UserRoutes)
-
+app.use("/users", UserRoutes);
 
 app.listen(port, () => console.log(`Server is started on ${port}`));
