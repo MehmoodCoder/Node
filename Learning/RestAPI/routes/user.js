@@ -1,5 +1,5 @@
 import express from "express";
-import User from "./models/user";
+import User from "../models/user.js";
 
 const router = express.Router();
 
@@ -89,7 +89,7 @@ router
     // );
   });
 
-app.post("/api", async (req, res) => {
+router.post("/api", async (req, res) => {
   const body = req.body;
   console.log(body);
   if (
