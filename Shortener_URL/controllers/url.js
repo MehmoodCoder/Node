@@ -33,6 +33,10 @@ export async function GetByShortId(req, res) {
     },
   );
 
+  if (!entry) {
+    return res.status(404).json({ error: "Short URL not found" });
+  }
+
   res.redirect(entry.redirectURL);
 }
 
@@ -48,4 +52,8 @@ export async function GetAnalatics(req, res) {
     TotalClicks: result.visitHistory.length,
     Analatics: result.visitHistory,
   });
+}
+
+export async function HomeUI(req, res) {
+  res.render("home");
 }
