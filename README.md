@@ -10,16 +10,18 @@ The **Node.js, Express & MongoDB Practice Repository**! This repository tracks m
 ## 🛠️ Tech Stack
 * **Runtime:** Node.js (v18+)
 * **Framework:** Express.js
+* **Template Engine:** EJS (Embedded JavaScript)
 * **Database:** MongoDB (Local Community Server & Atlas Ready)
 * **ODM Library:** Mongoose
 * **Utilities:** nanoid, nodemon
-* **API Testing:** Postman / Thunder Client
+* **API Testing:** Postman
 
 ---
 
 ## ✨ Features
 
 - 🏗️ **MVC Architecture** – Clean separation of concerns with Models, Views, Controllers, and Routes
+- 🖼️ **Server-Side Rendering (SSR)** – Dynamic UI rendering powered by EJS templating engine
 - 🔗 **Dynamic URL Shortening** – Generates short, unique 8-character IDs using `nanoid`
 - 🎯 **Smart Redirection & Analytics** – Instantly redirects short links and logs visit timestamps in MongoDB
 - ⚡ **Auto-Reload Development** – Powered by `nodemon` for zero-restart developer workflow
@@ -53,6 +55,7 @@ The **Node.js, Express & MongoDB Practice Repository**! This repository tracks m
 | **Mongoose** | ODM Library | Schema-based modeling for MongoDB & Express |
 | **nodemon** | Developer Tool | Automatically restarts the node application when file changes in the directory are detected |
 | **nanoid** | Utility | Small, secure, URL-friendly unique string ID generator |
+| **EJS** | Template Engine | Server-side rendering (SSR) of dynamic HTML templates |
 | **Postman**| API Client | Testing REST API endpoints (GET, POST, PATCH, DELETE) |
 
 ---
@@ -121,6 +124,8 @@ The **Node.js, Express & MongoDB Practice Repository**! This repository tracks m
 │   │   └── 📄 url.js
 │   ├── 📁 routes
 │   │   └── 📄 url.js
+│   ├── 📁 views
+│   │   └── ⚙️ home.ejs
 │   ├── ⚙️ .gitignore
 │   ├── 📄 connect.js
 │   ├── 📄 index.js
@@ -231,6 +236,7 @@ npm i express
 npm i mongoose
 npm i nanoid
 npm i nodemon
+npm i ejs
 ```
 
 **It automatically Create package.json if not exists. Like**
@@ -259,6 +265,7 @@ npm i nodemon
     "start": "nodemon index.js"
   },
   "dependencies": {
+    "ejs": "^6.0.1",
     "express": "^5.2.1",
     "mongoose": "^9.8.0",
     "nanoid": "^6.0.0",
@@ -340,6 +347,7 @@ db.project-db-name.deleteMany({})
 
 - ✅ **Node.js Core Modules** – Working with `fs` (File System), `events`, and native `http` modules
 - ✅ **MVC Architecture** – Structuring backend apps using Models, Views, and Controllers
+- ✅ **Server-Side Rendering (SSR)** – Rendering dynamic web views and passing backend data using the EJS templating engine
 - ✅ **RESTful API Design** – Building standard HTTP routes (GET, POST, PUT, DELETE) with proper status codes
 - ✅ **Middleware Pipeline** – Creating custom loggers and handling request body parsing (`express.json`, `urlencoded`)
 - ✅ **MongoDB & Mongoose** – Designing Schemas, Models, and performing CRUD operations
