@@ -1,5 +1,6 @@
 import express from "express";
 import URLRoute from "./routes/url.js";
+import StaticURLRoute from "./routes/static.js";
 import ConnectDB from "./connect.js";
 import path from 'path'
 
@@ -17,6 +18,7 @@ ConnectDB("mongodb://127.0.0.1:27017/short-url")
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use("/", StaticURLRoute);
 app.use("/url", URLRoute);
 
 app.listen(port, () => console.log("Server Started at port ", port));

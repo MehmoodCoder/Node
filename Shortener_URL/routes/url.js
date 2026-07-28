@@ -1,15 +1,13 @@
 import express from 'express'
-import { GenShortURL, GetByShortId, GetAnalatics, HomeUI } from '../controllers/url.js'
+import { GenShortURL, GetByShortId, GetAnalatics } from '../controllers/url.js'
 
 const router = express.Router()
 
 router.post('/', GenShortURL)
 
-router.get("/analytics/:shortid", GetAnalatics)
-
-router.get("/home", HomeUI)
-
 router.get("/:shortid", GetByShortId)
+
+router.get("/analytics/:shortid", GetAnalatics)
 
 
 export default router

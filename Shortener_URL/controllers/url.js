@@ -54,9 +54,3 @@ export async function GetAnalatics(req, res) {
   });
 }
 
-export async function HomeUI(req, res) {
-  const AllURLs = await URLModel.find({})
-  res.render("home", {
-    urls: AllURLs
-  });
-}
