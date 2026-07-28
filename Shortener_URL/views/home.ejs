@@ -6,6 +6,9 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    <h1 style="text-align: center;">Data</h1>
+    <% urls.forEach(url => { %>
+     <li  style="text-align: center;">Short Id <%= url.shortID %>&ensp; of &ensp;<%= url.redirectURL %> </li><br>
+    <% }) %>
 </body>
 </html>
