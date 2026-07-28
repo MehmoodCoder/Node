@@ -119,13 +119,15 @@ The **Node.js, Express & MongoDB Practice Repository**! This repository tracks m
 │       └── 📄 version.js
 ├── 📁 Shortener_URL
 │   ├── 📁 controllers
+│   │   ├── 📄 static.js
 │   │   └── 📄 url.js
 │   ├── 📁 models
 │   │   └── 📄 url.js
 │   ├── 📁 routes
+│   │   ├── 📄 static.js
 │   │   └── 📄 url.js
 │   ├── 📁 views
-│   │   └── ⚙️ home.ejs
+│   │   └── 📄 home.ejs
 │   ├── ⚙️ .gitignore
 │   ├── 📄 connect.js
 │   ├── 📄 index.js
