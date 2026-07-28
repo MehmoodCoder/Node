@@ -6,7 +6,7 @@ export async function GenShortURL(req, res) {
   const url = req.body?.url;
 
   if (!url) {
-    return res.status(400).json({ error: "Url is required" });
+    return res.status(400).redirect("/url/home");
   }
 
   await URLModel.create({
@@ -15,7 +15,7 @@ export async function GenShortURL(req, res) {
     visitHistory: [],
   });
 
-  res.status(201).json({ id: shortId });
+  return res.redirect("/url/home");
 }
 
 export async function GetByShortId(req, res) {
@@ -30,14 +30,19 @@ export async function GetByShortId(req, res) {
           timestamp: new Date(),
         },
       },
-    },
+    }
   );
 
   if (!entry) {
     return res.status(404).json({ error: "Short URL not found" });
   }
 
-  res.redirect(entry.redirectURL);
+  let targetURL = entry.redirectURL;
+  if (!targetURL.startsWith("http://") && !targetURL.startsWith("https://")) {
+    targetURL = `https://${targetURL}`;
+  }
+
+  return res.redirect(targetURL);
 }
 
 export async function GetAnalatics(req, res) {
@@ -46,11 +51,12 @@ export async function GetAnalatics(req, res) {
     shortID,
   });
 
-  //   console.log(result);
+  if (!result) {
+    return res.status(404).json({ error: "Short URL not found" });
+  }
 
-  res.status(200).json({
+  return res.status(200).json({
     TotalClicks: result.visitHistory.length,
     Analatics: result.visitHistory,
   });
 }
-
