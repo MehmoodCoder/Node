@@ -2,217 +2,217 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>URL Shortener - Home</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Shortener - Home</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        body {
-            background-color: #f4f7f6;
-            color: #333;
-            padding: 20px 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+    body {
+      background-color: #f4f7f6;
+      color: #333;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        h1 {
-            margin-bottom: 20px;
-            color: #2c3e50;
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            text-align: center;
-        }
+    h1 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      text-align: center;
+    }
 
-        h2 {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-        }
+    h2 {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+    }
 
-        .card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            width: 100%;
-            max-width: 700px;
-            margin-bottom: 20px;
-        }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 700px;
+      margin-bottom: 20px;
+    }
 
-        .form-group {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-        }
+    .form-group {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
 
-        input[type="text"] {
-            flex: 1;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            font-size: 15px;
-            outline: none;
-            min-width: 0;
-        }
+    input[type="text"] {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 15px;
+      outline: none;
+      min-width: 0;
+    }
 
-        input[type="text"]:focus {
-            border-color: #3498db;
-        }
+    input[type="text"]:focus {
+      border-color: #3498db;
+    }
 
-        button {
-            padding: 12px 20px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            cursor: pointer;
-            transition: 0.2s ease;
-            white-space: nowrap;
-        }
+    button {
+      padding: 12px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      white-space: nowrap;
+    }
 
-        button:hover {
-            background-color: #2980b9;
-        }
+    button:hover {
+      background-color: #2980b9;
+    }
 
-        .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            min-width: 450px;
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      min-width: 450px;
+    }
 
-        th,
-        td {
-            text-align: left;
-            padding: 12px 8px;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-        }
+    th,
+    td {
+      text-align: left;
+      padding: 12px 8px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
 
-        th {
-            background-color: #f8f9fa;
-            color: #555;
-        }
+    th {
+      background-color: #f8f9fa;
+      color: #555;
+    }
 
-        a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 500;
-            word-break: break-all;
-        }
+    a {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: 500;
+      word-break: break-all;
+    }
 
-        a:hover {
-            text-decoration: underline;
-        }
+    a:hover {
+      text-decoration: underline;
+    }
 
-        .url-cell {
-            max-width: 180px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+    .url-cell {
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 15px 8px;
-            }
+    @media (max-width: 480px) {
+      body {
+        padding: 15px 8px;
+      }
 
-            .card {
-                padding: 15px;
-            }
+      .card {
+        padding: 15px;
+      }
 
-            .form-group {
-                flex-direction: column;
-            }
+      .form-group {
+        flex-direction: column;
+      }
 
-            button {
-                width: 100%;
-            }
+      button {
+        width: 100%;
+      }
 
-            th,
-            td {
-                padding: 8px 5px;
-                font-size: 13px;
-            }
+      th,
+      td {
+        padding: 8px 5px;
+        font-size: 13px;
+      }
 
-            .url-cell {
-                max-width: 120px;
-            }
-        }
-    </style>
+      .url-cell {
+        max-width: 120px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <h1>URL Shortener</h1>
+  <h1>URL Shortener</h1>
 
-    <div class="card">
-        <form action="/url" method="POST" class="form-group">
-            <input type="text" name="url" placeholder="https://example.com" required />
-            <button type="submit">Generate Link</button>
-        </form>
+  <div class="card">
+    <form action="/url" method="POST" class="form-group">
+      <input type="text" name="url" placeholder="https://example.com" required />
+      <button type="submit">Generate Link</button>
+    </form>
+  </div>
+
+  <% if (locals.id) { %>
+  <p style="margin-top: 15px; color: #27ae60; font-weight: 600; text-align: center;">
+    URL Generated Successfully:
+    <a href="/url/<%= id %>" target="_blank">
+      http://localhost:4000/url/<%= id %>
+    </a>
+  </p>
+  <% } %>
+
+  <div class="card">
+    <h2>All Generated Short URLs</h2>
+
+    <% if (locals.urls && urls.length> 0) { %>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Short ID</th>
+            <th>Original URL</th>
+            <th>Clicks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% urls.forEach((url, index)=> { %>
+          <tr>
+            <td>
+              <%= index + 1 %>
+            </td>
+            <td>
+              <a href="/url/<%= url.shortID %>" target="_blank">
+                <%= url.shortID %>
+              </a>
+            </td>
+            <td class="url-cell" title="<%= url.redirectURL %>">
+              <%= url.redirectURL %>
+            </td>
+            <td>
+              <%= url.visitHistory.length %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
     </div>
-
-    <% if (locals.id) { %>
-        <p style="margin-top: 15px; color: #27ae60; font-weight: 600; text-align: center;">
-            URL Generated Successfully:
-            <a href="/url/<%= id %>" target="_blank">
-                http://localhost:4000/url/<%= id %>
-            </a>
-        </p>
-        <% } %>
-
-            <div class="card">
-                <h2>All Generated Short URLs</h2>
-
-                <% if (locals.urls && urls.length> 0) { %>
-                    <div class="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Short ID</th>
-                                    <th>Original URL</th>
-                                    <th>Clicks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% urls.forEach((url, index)=> { %>
-                                    <tr>
-                                        <td>
-                                            <%= index + 1 %>
-                                        </td>
-                                        <td>
-                                            <a href="/url/<%= url.shortID %>" target="_blank">
-                                                <%= url.shortID %>
-                                            </a>
-                                        </td>
-                                        <td class="url-cell" title="<%= url.redirectURL %>">
-                                            <%= url.redirectURL %>
-                                        </td>
-                                        <td>
-                                            <%= url.visitHistory.length %>
-                                        </td>
-                                    </tr>
-                                    <% }) %>
-                            </tbody>
-                        </table>
-                    </div>
-                    <% } else { %>
-                        <p style="margin-top: 15px; color: #777;">No URLs generated yet in database.</p>
-                        <% } %>
-            </div>
+    <% } else { %>
+    <p style="margin-top: 15px; color: #777;">No URLs generated yet in database.</p>
+    <% } %>
+  </div>
 </body>
 
 </html>
