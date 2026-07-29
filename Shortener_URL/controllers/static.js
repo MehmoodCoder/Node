@@ -7,3 +7,7 @@ export async function HomeUI(req, res) {
     urls: AllURLs
   });
 }
+
+export async function SignUp(req, res){
+    res.render("signup")
+}

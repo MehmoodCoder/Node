@@ -1,6 +1,9 @@
 import express from "express";
+
 import URLRoute from "./routes/url.js";
 import StaticURLRoute from "./routes/static.js";
+import UserRoute from './routes/user.js'
+
 import ConnectDB from "./connect.js";
 import path from 'path'
 
@@ -20,5 +23,7 @@ app.use(express.json());
 
 app.use("/", StaticURLRoute);
 app.use("/url", URLRoute);
+app.use("/user", UserRoute);
+
 
 app.listen(port, () => console.log("Server Started at port ", port));
