@@ -6,7 +6,7 @@ export async function GenShortURL(req, res) {
   const url = req.body?.url;
 
   if (!url) {
-    return res.status(400).redirect("/url/home");
+    return res.status(400).json({'msg':"Cann't get URL"});
   }
 
   await URLModel.create({
@@ -15,7 +15,7 @@ export async function GenShortURL(req, res) {
     visitHistory: [],
   });
 
-  return res.redirect("/url/home");
+  return res.redirect("/");
 }
 
 export async function GetByShortId(req, res) {
