@@ -8,6 +8,6 @@ export async function SignUp(req, res) {
         password,
     })
 
-    return res.render("home")
+    return res.redirect("/")
 }
 
