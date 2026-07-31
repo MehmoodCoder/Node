@@ -22,6 +22,7 @@
     "start": "nodemon index.js"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
     "mongoose": "^9.8.0",
