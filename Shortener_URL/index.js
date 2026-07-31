@@ -1,4 +1,5 @@
 import express from "express";
+import path from 'path'
 import cookieParser from "cookie-parser";
 
 import URLRoute from "./routes/url.js";
@@ -6,9 +7,8 @@ import StaticURLRoute from "./routes/static.js";
 import UserRoute from './routes/user.js'
 
 import ConnectDB from "./connect.js";
-import path from 'path'
 
-import { LoggedInUsersOnly } from "./middlewares/auth.js";
+import { checkAuth, LoggedInUsersOnly } from "./middlewares/auth.js";
 
 const app = express();
 const port = 4000;
@@ -25,9 +25,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/", StaticURLRoute);
+app.use("/", checkAuth, StaticURLRoute);
 app.use("/url", LoggedInUsersOnly, URLRoute);
-app.use("/user", UserRoute);
+app.use("/user", UserRoute)
 
 
 app.listen(port, () => console.log("Server Started at port ", port));

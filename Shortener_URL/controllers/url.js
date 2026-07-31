@@ -13,6 +13,7 @@ export async function GenShortURL(req, res) {
     shortID: shortId,
     redirectURL: url,
     visitHistory: [],
+    createdBy: req.user._id,
   });
 
   const AllURLs = await URLModel.find({});

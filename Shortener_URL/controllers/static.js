@@ -2,9 +2,12 @@ import URLModel from "../models/url.js";
 
 
 export async function HomeUI(req, res) {
-  const AllURLs = await URLModel.find({})
+    if (!req.user) {
+        return res.redirect('/login')
+    }
+  const AllURLs = await URLModel.find({ createdBy: req.user._id })
   const GenId = req.query.id;
-  res.render("home", {
+  return res.render("home", {
     urls: AllURLs,
     id: GenId
   });
