@@ -13,7 +13,7 @@ The **Node.js, Express & MongoDB Practice Repository**! This repository tracks m
 * **Template Engine:** EJS (Embedded JavaScript)
 * **Database:** MongoDB (Local Community Server & Atlas Ready)
 * **ODM Library:** Mongoose
-* **Utilities:** nanoid, nodemon
+* **Utilities:** nanoid, nodemon, cookie-parser, uuid
 * **API Testing:** Postman
 
 ---
@@ -56,6 +56,8 @@ The **Node.js, Express & MongoDB Practice Repository**! This repository tracks m
 | **nodemon** | Developer Tool | Automatically restarts the node application when file changes in the directory are detected |
 | **nanoid** | Utility | Small, secure, URL-friendly unique string ID generator |
 | **EJS** | Template Engine | Server-side rendering (SSR) of dynamic HTML templates |
+| **uuid** | Utility | Cryptographically strong Universally Unique Identifier (UUID) generator (e.g., `v4` for unique session/user IDs) |
+| **cookie-parser** | Middleware | Express middleware to parse incoming request `Cookie` headers and populate `req.cookies` |
 | **Postman**| API Client | Testing REST API endpoints (GET, POST, PATCH, DELETE) |
 
 ---
@@ -191,7 +193,7 @@ description: may add
 ​
 entry point: (index.js)​
 
-test command: enter​
+test command: just enter​
 
 git repository: (https://github.com/username/repo_name.git)
 
@@ -239,6 +241,8 @@ npm i mongoose
 npm i nanoid
 npm i nodemon
 npm i ejs
+npm i cookie-parser
+npm i uuid
 ```
 
 **It automatically Create package.json if not exists. Like**
@@ -267,11 +271,14 @@ npm i ejs
     "start": "nodemon index.js"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
     "mongoose": "^9.8.0",
     "nanoid": "^6.0.0",
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "uuid": "^14.0.1",
+
   }
 }
 
