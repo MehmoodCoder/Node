@@ -13,3 +13,7 @@ export async function HomeUI(req, res) {
 export async function SignUp(req, res){
     res.render("signup")
 }
+
+export async function LogIn(req, res){
+    res.render("login")
+}

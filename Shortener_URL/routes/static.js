@@ -1,5 +1,5 @@
 import express from 'express'
-import { HomeUI, SignUp } from '../controllers/static.js'
+import { HomeUI, SignUp, LogIn } from '../controllers/static.js'
 
 const router = express.Router()
 
@@ -7,5 +7,7 @@ const router = express.Router()
 router.get("/", HomeUI)
 
 router.get('/signup', SignUp)
+
+router.get('/login', LogIn)
 
 export default router
