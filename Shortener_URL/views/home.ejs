@@ -164,7 +164,7 @@
     </form>
   </div>
 
-  <% if (locals.id) { %>
+  <% if (locals.id && locals.urls && urls.length > 0) { %>
   <p style="margin-top: 15px; color: #27ae60; font-weight: 600; margin-bottom: 15px; text-align: center;">
     URL Generated Successfully:
     <a href="/url/<%= id %>" target="_blank">
