@@ -13,7 +13,7 @@ The **Node.js, Express & MongoDB Practice Repository**! This repository tracks m
 * **Template Engine:** EJS (Embedded JavaScript)
 * **Database:** MongoDB (Local Community Server & Atlas Ready)
 * **ODM Library:** Mongoose
-* **Utilities:** nanoid, nodemon, cookie-parser, uuid
+* **Utilities:** nanoid, nodemon, cookie-parser, uuid, jsonwebtoken
 * **API Testing:** Postman
 
 ---
@@ -57,6 +57,7 @@ The **Node.js, Express & MongoDB Practice Repository**! This repository tracks m
 | **nanoid** | Utility | Small, secure, URL-friendly unique string ID generator |
 | **EJS** | Template Engine | Server-side rendering (SSR) of dynamic HTML templates |
 | **uuid** | Utility | Cryptographically strong Universally Unique Identifier (UUID) generator (e.g., `v4` for unique session/user IDs) |
+| **jsonwebtoken** | Authentication | Generates and verifies digital signatures/tokens (JWT) to securely pass information between client & server |
 | **cookie-parser** | Middleware | Express middleware to parse incoming request `Cookie` headers and populate `req.cookies` |
 | **Postman**| API Client | Testing REST API endpoints (GET, POST, PATCH, DELETE) |
 
@@ -243,6 +244,7 @@ npm i nodemon
 npm i ejs
 npm i cookie-parser
 npm i uuid
+npm i jsonwebtoken
 ```
 
 **It automatically Create package.json if not exists. Like**
@@ -274,11 +276,11 @@ npm i uuid
     "cookie-parser": "^1.4.7",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.8.0",
     "nanoid": "^6.0.0",
     "nodemon": "^3.1.14",
     "uuid": "^14.0.1",
-
   }
 }
 
