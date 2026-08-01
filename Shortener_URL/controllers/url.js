@@ -5,6 +5,8 @@ export async function GenShortURL(req, res) {
   const shortId = nanoid(8);
   const url = req.body?.url;
 
+  // console.log("Logged in user is:", req.user);
+
   if (!url) {
     return res.redirect("/");
   }
@@ -13,7 +15,7 @@ export async function GenShortURL(req, res) {
     shortID: shortId,
     redirectURL: url,
     visitHistory: [],
-    createdBy: req.user._id,
+    createdBy: req.user?._id,
   });
 
   const AllURLs = await URLModel.find({});

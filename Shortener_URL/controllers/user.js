@@ -29,7 +29,7 @@ export async function LogIn(req, res) {
 
     const sessionId = uuidv4()
 
-    setUser(sessionId, user)
+    setUser(sessionId, isLogin)
     res.cookie('uid', sessionId)
 
     return res.redirect("/")
