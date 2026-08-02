@@ -27,7 +27,7 @@ app.use(cookieParser());
 app.use(AuthorizationHeaderVal);
 
 app.use("/", StaticURLRoute);
-app.use("/url", RestrictTo(['Normal']), URLRoute);
+app.use("/url", RestrictTo(['Normal', 'Admin']), URLRoute);
 app.use("/user", UserRoute)
 
 
