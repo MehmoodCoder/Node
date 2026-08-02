@@ -183,6 +183,7 @@ In the project directory, you can run the following commands configured in `pack
 ```bash
 npm start
 ```
+
 ---
 
 ## ⚙️ Environment Setup & Tool Installation Guide
@@ -404,7 +405,7 @@ db.project-db-name.deleteMany({})
 # 5. Exit the interactive MongoDB Shell session and return to the system terminal
 .exit
 
-# 6. And more
+# 6. And many more
 
 ```
 
@@ -412,11 +413,15 @@ db.project-db-name.deleteMany({})
 
 ## 📚 Learning Resources
 
-- [Node.js Official Documentation](https://nodejs.org/en/docs/)
-- [Express.js API Reference](https://expressjs.com/)
-- [MongoDB Manual](https://www.mongodb.com/docs/manual/)
-- [Mongoose Docs](https://mongoosejs.com/docs/)
-- [Postman Learning Center](https://learning.postman.com/docs/publishing-your-api/summary/)
+- 🟢 [Node.js Official Documentation](https://nodejs.org/en/docs/) – Core Node.js concepts & runtime docs
+- ⚡ [Express.js API Reference](https://expressjs.com/) – Web framework, routing & middleware guides
+- 🗄️ [MongoDB Manual](https://www.mongodb.com/docs/manual/) – NoSQL database features & queries
+- 🍃 [Mongoose Docs](https://mongoosejs.com/docs/) – ODM schemas, models, and queries
+- 📦 [NPM Official Registry](https://www.npmjs.com/) – Package manager & dependency discovery
+- 🔑 [JSON Web Tokens (JWT)](https://jwt.io/introduction) – Token-based authentication mechanics
+- 🎨 [EJS Templating Engine](https://ejs.co/) – Embedded JavaScript templates for SSR
+- 🎲 [nanoid Documentation](https://www.npmjs.com/package/nanoid) – Unique string generator for short URLs
+- 🧪 [Postman Learning Center](https://learning.postman.com/docs/) – API testing, environments & cookies
 
 ---
 
