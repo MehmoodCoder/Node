@@ -30,7 +30,10 @@ export async function LogIn(req, res) {
     // const sessionId = uuidv4() // no longer needed since we are using jwt 
 
     const token = setUser(isLogin)
-    res.cookie('token', token)
+    res.cookie('token', token, {
+        domain: 'localhost', // only for localhost by default
+        expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // expires in 24 hours
+    })
 
     return res.redirect("/")
 }
