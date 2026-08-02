@@ -31,14 +31,15 @@ A full-featured, secure **URL Shortener RESTful Web Application** built using **
 
 ## ✨ Features
 
-- 🏗️ **MVC Architecture** – Clean separation of concerns with Models, Views, Controllers, and Routes
-- 🖼️ **Server-Side Rendering (SSR)** – Dynamic UI rendering powered by EJS templating engine
-- 🔗 **Dynamic URL Shortening** – Generates short, unique 8-character IDs using `nanoid`
-- 🎯 **Smart Redirection & Analytics** – Instantly redirects short links and logs visit timestamps in MongoDB
-- ⚡ **Auto-Reload Development** – Powered by `nodemon` for zero-restart developer workflow
-- 🛡️ **Robust Middleware Pipeline** – Body parsing for JSON/URL-encoded data & custom request logging
-- 🗄️ **Mongoose Data Validation** – Schema-level type checking and unique constraints
-- 🧪 **Production-Ready REST Endpoints** – Clean HTTP status codes and structured JSON responses
+- 🏗️ **MVC Architecture** – Clean separation of concerns with Models, Views, Controllers, Routes, and Services.
+- 🔐 **JWT Authentication & Cookies** – Secure user signup/login system powered by JSON Web Tokens stored in HTTP-only cookies.
+- 🛡️ **Role-Based Access Control (RBAC)** – Middleware-level authorization layer restricting routes based on user roles (`Admin`, `Normal`).
+- 🖼️ **Server-Side Rendering (SSR)** – Clean, dynamic user interfaces rendered using the **EJS** templating engine.
+- 🔗 **Dynamic URL Shortening** – Generates short, unique IDs using `nanoid` for fast link management.
+- 📊 **Click Analytics & History** – Tracks total clicks and logs visit timestamps inside MongoDB for every generated link.
+- ⚙️ **Centralized Environment Vault** – Secure handling of sensitive keys (`MONGO_URL`, `JWT_SECRET`, `PORT`) via `.env` integration.
+- 🗄️ **MongoDB & Mongoose Validation** – Schema-level data validation and efficient database connectivity.
+- ⚡ **Developer Workflow** – Instant auto-reloads during development powered by `nodemon`.
 
 ---
 
