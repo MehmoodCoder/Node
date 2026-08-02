@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
 
-const secretToken = process.env.JWT_SECRET;
-
 // const SeesionIdToMap = new Map() // not needed since we are using JWT
 
 export function setUser(user) {
   // return SeesionIdToMap.set(id, user)
+
+  const secretToken = process.env.JWT_SECRET;
 
   return jwt.sign(
     {
