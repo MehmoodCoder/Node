@@ -47,13 +47,18 @@ A full-featured, secure **URL Shortener RESTful Web Application** built using **
 
 | Component / Module | Purpose |
 | :--- | :--- |
-| **`index.js`** | Main entry point that initializes Express, registers global middlewares (`express.json`), and starts the server. |
+| **`index.js`** | Main entry point; configures `dotenv`, EJS view engine, global middlewares (`cookie-parser`, `express.json`), DB connection, and routes. |
 | **`connect.js`** | Handles async database connection setup using Mongoose to connect with MongoDB. |
-| **`models/url.js`** | Defines the Mongoose Schema for URLs, including `shortID`, `redirectURL`, and `visitHistory` array. |
-| **`controllers/url.js`** | Contains core business logic for generating short IDs (`GenShortURL`) and handling redirects/click tracking (`GetByShortId`). |
-| **`routes/url.js`** | Defines API endpoints (`POST /`, `GET /:nanoid`) and maps them to their respective controller functions. |
-| **`RestAPI/` Module** | A standalone REST microservice demonstrating full user CRUD operations and custom logging middlewares. |
-| **`Learning/` Modules** | Hands-on code practice covering Node.js native modules (`fs`, `events`, `http`), NPM versioning, and basic server creation. |
+| **`models/url.js`** | Mongoose schema for short links; stores `shortId`, `redirectURL`, `visitHistory`, and reference to `createdBy` user. |
+| **`models/user.js`** | Mongoose schema for authentication; manages user details including `name`, `email`, `password`, and `role` (`Normal`, `Admin`). |
+| **`controllers/url.js`** | Core URL business logic; generates unique `shortId`s via `nanoid` and logs click timestamps upon redirection. |
+| **`controllers/user.js`** | Handles user authentication logic (`HandleUserSignup`, `HandleUserLogin`) and sets JWT cookies. |
+| **`services/auth.js`** | Pure JWT token manager; encodes user payload on login (`setUser`) and decodes/verifies incoming tokens (`getUser`). |
+| **`middlewares/auth.js`** | Security layer (`AuthorizationHeaderVal`, `RestrictTo`); extracts JWT cookies and enforces role-based access control. |
+| **`routes/url.js`** | Protected URL endpoints (`POST /url`); restricted to authenticated roles (`Normal`, `Admin`). |
+| **`routes/static.js`** | Handles SSR page rendering for home dashboard (`/`), signup (`/signup`), and login (`/login`) views. |
+| **`routes/user.js`** | Endpoints for authentication workflows (`POST /user/signup`, `POST /user/login`). |
+| **`views/`** | Contains EJS template files (`home.ejs`, `signup.ejs`, `login.ejs`) for rendering the user interface. |
 
 ---
 
@@ -317,22 +322,58 @@ npm i dotenv
 
 * **Install Postman from** 🌐 [postman.com](https://postman.com) to test API's
 
-### Endpoint 1: Create Short URL
-* **HTTP Method:** `POST`
-* **URL:** `http://localhost:4000/url`
-* **Headers:** `Content-Type: application/json`
-* **Body (raw JSON):**
+> 💡 **Note:** Postman automatically manages the HTTP-only `token` cookie after login.
+
+---
+
+### 1. User Signup
+* **Method & Route:** `POST /user/signup`
+* **Body (JSON):**
 ```json
 {
-  "url": "https://github.com/Username"
+  "name": "Mehmood Coder",
+  "email": "mehmood@example.com",
+  "password": "Password123"
 }
 ```
-* **Success Response (`201 Created`):**
+
+### 2. User Login
+* **Method & Route:** `POST /user/login`
+* **Body (JSON):**
 ```json
 {
-  "id": "A1b2C3d4"
+  "email": "mehmood@example.com",
+  "password": "Password123"
 }
 ```
+
+* **Response:** Sets HTTP-only `token` cookie.
+
+---
+
+### 3. Create Short URL *(Protected)*
+* **Method & Route:** `POST /url`
+* **Body (JSON):**
+```json
+{
+  "url": "[https://github.com/MehmoodCoder](https://github.com/MehmoodCoder)"
+}
+```
+
+* **Response (201 Created):**
+
+```JSON
+{
+  "id": "8xK9p2Lm"
+}
+```
+
+---
+
+### 4. Redirect Link
+* **Method & Route:** `GET /url/:shortId`
+* **Example:** `http://localhost:4000/url/8xK9p2Lm`
+* **Response (`302 Found`):** Redirects to target destination & updates analytics.
 
 ---
 
@@ -363,6 +404,8 @@ db.project-db-name.deleteMany({})
 # 5. Exit the interactive MongoDB Shell session and return to the system terminal
 .exit
 
+# 6. And more
+
 ```
 
 ---
@@ -379,15 +422,16 @@ db.project-db-name.deleteMany({})
 
 ## 💡 Core Concepts Covered
 
-- ✅ **Node.js Core Modules** – Working with `fs` (File System), `events`, and native `http` modules
-- ✅ **MVC Architecture** – Structuring backend apps using Models, Views, and Controllers
-- ✅ **Server-Side Rendering (SSR)** – Rendering dynamic web views and passing backend data using the EJS templating engine
-- ✅ **RESTful API Design** – Building standard HTTP routes (GET, POST, PUT, DELETE) with proper status codes
-- ✅ **Middleware Pipeline** – Creating custom loggers and handling request body parsing (`express.json`, `urlencoded`)
-- ✅ **MongoDB & Mongoose** – Designing Schemas, Models, and performing CRUD operations
-- ✅ **Database Aggregation & Analytics** – Tracking array updates (`$push`) and dynamic timestamp logs
-- ✅ **Routing & Parameter Handling** – Extracting path variables with `req.params` and body payloads with `req.body`
-- ✅ **Environment & CLI Setup** – Managing ES Modules (`type: "module"`), `nodemon`, and database management via `mongosh`
+- ✅ **MVC Architecture** – Structuring backend apps using Models, Views, Controllers, Routes, and Services
+- ✅ **Authentication & JWT** – Issuing, signing, and verifying JSON Web Tokens (JWT) for user authentication
+- ✅ **Cookie Management** – Storing and parsing HTTP-only cookies safely with `cookie-parser`
+- ✅ **Role-Based Access Control (RBAC)** – Restricting route access dynamically based on user roles (`Admin`, `Normal`)
+- ✅ **Server-Side Rendering (SSR)** – Dynamic UI rendering with EJS and passing session data to views
+- ✅ **MongoDB & Mongoose Schema Design** – Managing schemas, data types, unique constraints, and population
+- ✅ **Database Aggregation & Analytics** – Array updates (`$push`) for recording link click history and timestamps
+- ✅ **Express Middleware Pipeline** – Request body parsing (`json`, `urlencoded`), auth state injection, and protected route guards
+- ✅ **RESTful Endpoints & Redirection** – Dynamic parameter handling (`req.params`) and 302 HTTP redirects
+- ✅ **Environment Vault & Tooling** – Managing configuration variables via `.env` and automated dev workflows with `nodemon`
 
 ---
 
@@ -408,13 +452,21 @@ This project is open source and available under the **MIT License**.
 
 ## 📝 Changelog
 
+### v2.0.0 (Latest Update)
+- 🔐 **JWT Authentication System** – Implemented user signup and login flows using JSON Web Tokens (JWT) for stateless authentication.
+- 🍪 **Cookie-Based Sessions** – Integrated `cookie-parser` middleware to securely pass and verify HTTP-only auth tokens.
+- 🛡️ **Role-Based Access Control (RBAC)** – Added authorization middlewares (`RestrictTo`) to restrict endpoints based on user roles (`Admin`, `Normal`).
+- 🖼️ **SSR Dashboard (EJS Integration)** – Built server-side rendered views for user login, registration, and URL management dashboard.
+- ⚙️ **Environment Management** – Centralized sensitive configurations (`PORT`, `MONGO_URL`, `JWT_SECRET`) into `.env` file setup.
+
+---
+
 ### v1.0.0 (Initial Release)
 - 🚀 **Core Fundamentals** – Built custom HTTP servers, learned EventEmitters, File System (`fs`) operations, and NPM module handling.
 - 🛠️ **RESTful API Architecture** – Structured scalable Express servers following clean MVC (Model-View-Controller) patterns.
 - ⚡ **URL Shortener Microservice** – Implemented `nanoid` logic to generate unique short IDs for long URLs.
 - 🗄️ **MongoDB Integration** – Connected Mongoose schemas with real-time URL redirect logic and automated visit analytics tracking.
 - 🛠️ **Developer Experience** – Configured `nodemon` for auto-reloading during development and created custom logging middlewares.
-
 ---
 
 ## 🤝 Contributing
