@@ -14,7 +14,7 @@ import ConnectDB from "./connect.js";
 import { AuthorizationHeaderVal, RestrictTo } from "./middlewares/auth.js";
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 4000;
 
 app.set("view engine", 'ejs')
 
