@@ -8,7 +8,7 @@ import UserRoute from './routes/user.js'
 
 import ConnectDB from "./connect.js";
 
-import { checkAuth, LoggedInUsersOnly } from "./middlewares/auth.js";
+import { AuthorizationHeaderVal, RestrictTo } from "./middlewares/auth.js";
 
 const app = express();
 const port = 4000;
@@ -24,9 +24,10 @@ ConnectDB("mongodb://127.0.0.1:27017/short-url")
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(AuthorizationHeaderVal);
 
-app.use("/", checkAuth, StaticURLRoute);
-app.use("/url", LoggedInUsersOnly, URLRoute);
+app.use("/", StaticURLRoute);
+app.use("/url", RestrictTo(['Normal']), URLRoute);
 app.use("/user", UserRoute)
 
 

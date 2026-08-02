@@ -1,43 +1,70 @@
 import { getUser } from "../services/auth.js";
 
-export function AuthorizationHeaderVal(req, res, next){
+export function AuthorizationHeaderVal(req, res, next) {
+  //   const UserHeader = req.headers["authorization"];
+  const TokenCookie = req.cookies?.token;
+  req.user = null;
 
+  if (!TokenCookie) {
+    return next();
+  }
+
+  const token = TokenCookie;
+  const user = getUser(token);
+
+  if (!user) {
+    return res.redirect("/login");
+  }
+
+  req.user = user;
+  next();
 }
 
-export async function LoggedInUsersOnly(req, res, next) {
+export function RestrictTo(role = []) {
+  return function (req, res, next) {
+    if (!req.user) return res.redirect("/login");
 
-    // const userid = req.cookies?.token
+    if (!role.includes(req.user.role))
+      return res.status(403).end("Unauthorized Access");
 
-    const UserHeader = req.headers['authorization']
-
-    if (!UserHeader) {
-        return res.redirect('/login')
-    }
-
-    const token = UserHeader.split('Bearer ')[1]
-    const user = getUser(token)
-
-    if (!user) {
-        return res.redirect('/login')
-    }
-
-    req.user = user
-    next()
+    next();
+  };
 }
 
-export async function checkAuth(req, res, next) {
-    // const userid = req.cookies?.token    
+// export async function LoggedInUsersOnly(req, res, next) {
 
-     const UserHeader = req.headers['authorization']
+//     // const userid = req.cookies?.token
 
-    if (!UserHeader) {
-        return res.redirect('/login')
-    }
+//     const UserHeader = req.headers['authorization']
 
-    const token = UserHeader.split('Bearer ')[1]
-    const user = getUser(token)
+//     if (!UserHeader) {
+//         return res.redirect('/login')
+//     }
 
-    req.user = user
-    
-    next()
-}
+//     const token = UserHeader.split('Bearer ')[1]
+//     const user = getUser(token)
+
+//     if (!user) {
+//         return res.redirect('/login')
+//     }
+
+//     req.user = user
+//     next()
+// }
+
+// export async function checkAuth(req, res, next) {
+//     // const userid = req.cookies?.token
+
+//      const UserHeader = req.headers['authorization']
+
+//     if (!UserHeader) {
+//         return res.redirect('/login')
+//     }
+
+//     const token = UserHeader.split('Bearer ')[1]
+//     const user = getUser(token)
+
+//     req.user = user
+
+//     next()
+// }
