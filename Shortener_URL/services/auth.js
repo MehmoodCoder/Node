@@ -20,6 +20,8 @@ export function setUser(user) {
 export function getUser(token) {
   // return SeesionIdToMap.get(id)
 
+  const secretToken = process.env.JWT_SECRET;
+
   if (!token) return null;
 
   try {
