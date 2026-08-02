@@ -467,6 +467,7 @@ This project is open source and available under the **MIT License**.
 - ⚡ **URL Shortener Microservice** – Implemented `nanoid` logic to generate unique short IDs for long URLs.
 - 🗄️ **MongoDB Integration** – Connected Mongoose schemas with real-time URL redirect logic and automated visit analytics tracking.
 - 🛠️ **Developer Experience** – Configured `nodemon` for auto-reloading during development and created custom logging middlewares.
+
 ---
 
 ## 🤝 Contributing
