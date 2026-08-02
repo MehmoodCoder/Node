@@ -2,6 +2,9 @@ import express from "express";
 import path from 'path'
 import cookieParser from "cookie-parser";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 import URLRoute from "./routes/url.js";
 import StaticURLRoute from "./routes/static.js";
 import UserRoute from './routes/user.js'
@@ -11,13 +14,13 @@ import ConnectDB from "./connect.js";
 import { AuthorizationHeaderVal, RestrictTo } from "./middlewares/auth.js";
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT;
 
 app.set("view engine", 'ejs')
 
 app.set("views", path.resolve('./views'))
 
-ConnectDB("mongodb://127.0.0.1:27017/short-url")
+ConnectDB(process.env.MONGO_URL)
   .then(() => console.log("DB Connected Successfully"))
   .catch((err) => console.log("Error :", err));
 
