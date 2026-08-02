@@ -1,20 +1,31 @@
-## 🚀 Node.js, MongoDB & Express.js Backend Master Repository
+# 🚀 URL Shortener Application — Node.js, Express, MongoDB & JWT (MVC Architecture)
 
-🟢 Node.js Core Fundamentals ⚡ — A lightweight &amp; dependency-free HTTP server 🌐 built strictly using pure Node.js modules (`http` &amp; `fs` 📁) without Express! 🚀 Features asynchronous file system read/write operations 💾, native request routing 🔄, custom npm execution scripts 📜, and deep Event Loop architecture practice 🧠💻 with MongoDB Data Base
-
-
-The **Node.js, Express & MongoDB Practice Repository**! This repository tracks my step-by-step learning journey—from core Node.js modules and HTTP servers to building full RESTful APIs and real-world micro-services like a **URL Shortener Application** using the **MVC (Model-View-Controller) pattern**.
+A full-featured, secure **URL Shortener RESTful Web Application** built using **Node.js, Express.js, MongoDB (Mongoose)**, and Server-Side Rendering (EJS). The project implements strict **MVC Architecture**, stateless **JWT Authentication (via HTTP-Only Cookies)**, and **Role-Based Access Control (RBAC)**.
 
 ---
 
-## 🛠️ Tech Stack
+## 🔥 Key Features & Implementation Highlights
+
+* **🏗️ Clean MVC Architecture:** Modular structure separating Models (Schemas), Views (EJS Templates), Controllers (Business Logic), and Middlewares/Services.
+* **🔐 JWT Authentication:** Stateless session management using **JSON Web Tokens** set in secure browser cookies.
+* **🛡️ Role-Based Access Control (RBAC) Middleware:**
+  * **`Normal` Users:** Can generate short URLs, view, manage, and track click analytics for **only their own generated links**.
+  * **`Admin` Users:** Possess elevated privileges to view and manage **all generated URLs across the entire platform**.
+* **📈 Real-Time Click Analytics:** Dynamic redirection tracking total visits and timestamps for each generated short URL.
+* **🔒 Security & Best Practices:** Middleware-level authorization checks, custom error handling, and environment-variable-ready (`.env`) configuration.
+
+---
+
+## 🛠️ Tech Stack & Tools
+
 * **Runtime:** Node.js (v18+)
 * **Framework:** Express.js
 * **Template Engine:** EJS (Embedded JavaScript)
 * **Database:** MongoDB (Local Community Server & Atlas Ready)
 * **ODM Library:** Mongoose
-* **Utilities:** nanoid, nodemon, cookie-parser, uuid, jsonwebtoken
+* **Utilities:** nanoid, nodemon, cookie-parser, uuid, jsonwebtoken, dotenv
 * **API Testing:** Postman
+* **Version Control:** Git, GitHub
 
 ---
 
@@ -59,6 +70,7 @@ The **Node.js, Express & MongoDB Practice Repository**! This repository tracks m
 | **uuid** | Utility | Cryptographically strong Universally Unique Identifier (UUID) generator (e.g., `v4` for unique session/user IDs) |
 | **jsonwebtoken** | Authentication | Generates and verifies digital signatures/tokens (JWT) to securely pass information between client & server |
 | **cookie-parser** | Middleware | Express middleware to parse incoming request `Cookie` headers and populate `req.cookies` |
+| **dotenv** | Utility | Loads environment variables from a `.env` file into `process.env` |
 | **Postman**| API Client | Testing REST API endpoints (GET, POST, PATCH, DELETE) |
 
 ---
@@ -253,6 +265,7 @@ npm i ejs
 npm i cookie-parser
 npm i uuid
 npm i jsonwebtoken
+npm i dotenv
 ```
 
 **It automatically Create package.json if not exists. Like**
@@ -282,13 +295,14 @@ npm i jsonwebtoken
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.8.0",
     "nanoid": "^6.0.0",
     "nodemon": "^3.1.14",
-    "uuid": "^14.0.1",
+    "uuid": "^14.0.1"
   }
 }
 
