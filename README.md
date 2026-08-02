@@ -66,8 +66,7 @@ The **Node.js, Express & MongoDB Practice Repository**! This repository tracks m
 ## 📂 Project Directory Structure
 
 
-**Generated:** 7/27/2026, 10:29:03 PM
-
+**Generated:** 8/2/2026, 1:35:39 PM
 **Root Path:** `workspace\Node`
 
 ```
@@ -123,14 +122,23 @@ The **Node.js, Express & MongoDB Practice Repository**! This repository tracks m
 ├── 📁 Shortener_URL
 │   ├── 📁 controllers
 │   │   ├── 📄 static.js
-│   │   └── 📄 url.js
+│   │   ├── 📄 url.js
+│   │   └── 📄 user.js
+│   ├── 📁 middlewares
+│   │   └── 📄 auth.js
 │   ├── 📁 models
-│   │   └── 📄 url.js
+│   │   ├── 📄 url.js
+│   │   └── 📄 user.js
 │   ├── 📁 routes
 │   │   ├── 📄 static.js
-│   │   └── 📄 url.js
+│   │   ├── 📄 url.js
+│   │   └── 📄 user.js
+│   ├── 📁 services
+│   │   └── 📄 auth.js
 │   ├── 📁 views
-│   │   └── 📄 home.ejs
+│   │   ├── 📄 home.ejs
+│   │   ├── 📄 login.ejs
+│   │   └── 📄 signup.ejs
 │   ├── ⚙️ .gitignore
 │   ├── 📄 connect.js
 │   ├── 📄 index.js
