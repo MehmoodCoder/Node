@@ -324,7 +324,7 @@ npm i dotenv
 
 > 💡 **Note:** Postman automatically manages the HTTP-only `token` cookie after login.
 
----
+
 
 ### 1. User Signup
 * **Method & Route:** `POST /user/signup`
@@ -349,7 +349,7 @@ npm i dotenv
 
 * **Response:** Sets HTTP-only `token` cookie.
 
----
+
 
 ### 3. Create Short URL *(Protected)*
 * **Method & Route:** `POST /url`
@@ -368,7 +368,7 @@ npm i dotenv
 }
 ```
 
----
+
 
 ### 4. Redirect Link
 * **Method & Route:** `GET /url/:shortId`
