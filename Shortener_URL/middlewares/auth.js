@@ -2,13 +2,13 @@ import { getUser } from "../services/auth.js";
 
 export async function LoggedInUsersOnly(req, res, next) {
 
-    const userUid = req.cookies?.uid    
+    const userid = req.cookies?.token
 
-    if (!userUid) {
+    if (!userid) {
         return res.redirect('/login')
     }
 
-    const user = getUser(userUid)
+    const user = getUser(userid)
 
     if (!user) {
         return res.redirect('/login')
@@ -19,9 +19,9 @@ export async function LoggedInUsersOnly(req, res, next) {
 }
 
 export async function checkAuth(req, res, next) {
-    const userUid = req.cookies?.uid    
+    const userid = req.cookies?.token    
 
-    const user = getUser(userUid)
+    const user = getUser(userid)
 
     req.user = user
     

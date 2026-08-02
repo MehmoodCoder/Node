@@ -27,10 +27,10 @@ export async function LogIn(req, res) {
         });
     }
 
-    const sessionId = uuidv4()
+    // const sessionId = uuidv4() // no longer needed since we are using jwt 
 
-    setUser(sessionId, isLogin)
-    res.cookie('uid', sessionId)
+    const token = setUser(isLogin)
+    res.cookie('token', token)
 
     return res.redirect("/")
 }
