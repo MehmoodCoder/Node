@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const secretToken = "ItsMySecretKey12345678!@#$%^&*";
+const secretToken = process.env.JWT_SECRET;
 
 // const SeesionIdToMap = new Map() // not needed since we are using JWT
 
