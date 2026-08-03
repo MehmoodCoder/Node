@@ -17,10 +17,10 @@
   "license": "ISC",
   "author": "MehmoodCoder",
   "type": "module",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "dev": "node index.js"
+    "start": "nodemon app.js",
+    "dev": "node app.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
