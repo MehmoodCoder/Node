@@ -159,7 +159,7 @@ A full-featured, secure **URL Shortener RESTful Web Application** built using **
 │   │   └── 📄 signup.ejs
 │   ├── ⚙️ .gitignore
 │   ├── 📄 connect.js
-│   ├── 📄 index.js
+│   ├── 📄 app.js
 │   ├── ⚙️ package-lock.json
 │   └── ⚙️ package.json
 └── 📝 README.md
@@ -252,10 +252,10 @@ To enable modern ES6 `import/export` syntax instead of `require()`, open `packag
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js" // add manually write "nodemon index.js" if installed
+    "start": "node app.js" // add manually write "nodemon index.js" if installed
   }
 }
 
@@ -296,9 +296,9 @@ npm i dotenv
   "license": "ISC",
   "author": "Auther",
   "type": "module",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon app.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
@@ -332,7 +332,7 @@ npm i dotenv
 * **Body (JSON):**
 ```json
 {
-  "name": "Mehmood Coder",
+  "name": "MehmoodCoder",
   "email": "mehmood@example.com",
   "password": "Password123"
 }
