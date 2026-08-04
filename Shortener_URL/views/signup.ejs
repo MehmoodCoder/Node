@@ -1,193 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1006/1006771.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --accent-color: #6366f1;
-            --accent-hover: #4f46e5;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --error-bg: rgba(239, 68, 68, 0.15);
-            --error-text: #fca5a5;
-            --error-border: rgba(239, 68, 68, 0.3);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmViZjAwIiBkPSJNMjMzLjYgNDc5LjVjLTEuNy0xLjctMi43LTQuMS0zLjEtNy4zYy0uMy0yLjYtMi43LTQ3LjktNS4yLTEwMC43Yy0yLjYtNTIuOC00LjktOTYuOC01LjMtOTcuN2MtLjYtMS41LTUuOS42LTM4LjYgMTQuOGMtMjUuNSAxMS4xLTM5LjIgMTYuNS00MS41IDE2LjVjLTIuNiAwLTQuNC0uOC02LjUtMi45Yy0yLjYtMi42LTIuOS0zLjctMi45LTguN2MwLTUuNyAxOC42LTI0NiAxOS43LTI1NC40Yy4zLTIuNiAxLjUtNS4xIDMuMS02LjhsMi42LTIuNmgxMTkuN2wyLjggMi43YzIuMiAyLjEgMi44IDMuNiAyLjggNi44YzAgMi4yLTMuNyAyMy40LTguMiA0Ny4xYy00LjUgMjMuNi04IDQzLjItNy44IDQzLjRzMjQuMS01LjcgNTMuMi0xMy4xYzQ3LjYtMTIuMiA1My4xLTEzLjQgNTYuNS0xMi41YzQuNyAxLjMgNi44IDQuMyA2LjggOS41YzAgNS42LTEzMC4zIDM2Mi42LTEzMy42IDM2NmMtMy40IDMuNi0xMSAzLjUtMTQuNS0uMSIvPjxwYXRoIGZpbGw9IiMxMzMzYTMiIGQ9Ik05Ny4yIDM1Mi43Yy0xNS44LTIuOC0zMy4xLTkuMy00NS4yLTE3LjNjLTE2LTEwLjQtMzMuNS0zMC4zLTQxLjMtNDdDMi41IDI3MC44LTEuNSAyNDcuMi42IDIyOC43YzMuMi0yOC40IDEzLjMtNDkuNSAzMy4yLTY5LjRDNDkuMSAxNDQgNjUuMiAxMzQuOCA4Ny4xIDEyOWM4LjUtMi4zIDguOS0yLjMgNzcuOS0yLjNzNjkuNCAwIDc3LjkgMi4zYzIxLjkgNS45IDM4IDE1IDUzLjMgMzAuM3MyMy41IDI5IDI5LjEgNDguNWM0LjEgMTQuMyA1LjYgMjkuNyA0LjIgNDMuMWMtMS42IDE0LjgtMi44IDE4LjEtNy42IDIwLjRjLTExIDUuNC0zMC4yIDcuMi00NS40IDQuMmMtMTEuMy0yLjItMTMuMy03LTcuNC0xOC43YzIuOS01LjkgMy4yLTcuMiAzLjItMTZjMC04LjYuMy0xMC40LTMuMy0xNy41cS02LjktMTYuMi0yMi44LTI0LjNzLTEwLjctNC40LTI3LjEtMy43bC00OC42LS4zbC00My40LS44Yy0yMSAxLjEtMzIgNC41LTMyIDQuNWMtMTguNCAyLjYtMjguOSAyOC4yLTI2LjcgNDRjMi40IDE3LjIgMTEuNyAzMC40IDI2LjcgMzhjMCAwIDUuMSAzLjUgMjAgNC4zaDMwLjFjNDcuNy4xIDQzLjktLjEgNDYuMyA4LjJjNi4zIDIxLjggMTEuMyAzMC45IDIyLjkgNDIuMWM5LjEgOC43IDEwLjQgMTIgNi4zIDE2Yy0yIDItMy4zIDItNjEuNiAxLjljLTMyLjYgMC02MC4zLjEtNjEuOS0uNW0xODEuOSAwYy0xNi40LTMtMzMuMS05LjQtNDUuMi0xNy4zYy0xNi0xMC40LTMzLjUtMzAuMy00MS4zLTQ3Yy04LjEtMTcuMy0xMi4yLTQxLjItMTAuMi01OS44YzEuNy0xNi4zIDIuNS0xNy45IDkuNy0yMC45YzEyLjktNS4yIDI1LjMtNi40IDQxLjQtNC4xYzEzIDEuOSAxNS4zIDYuOCA5LjIgMTljLTIuOSA1LjktMy4yIDcuMi0zLjIgMTZjMCA4LjYuMyAxMC40IDMuMyAxNy41cTYuOSAxNi4yIDIyLjggMjQuM3M3LjIgNS4zIDI2LjUgNC4zbDQ5LjMtLjNsNDEuOC40YzE4LjktLjMgMzMuNi00LjEgMzMuNi00LjFjMTguMi00LjEgMjguOS0yOC4yIDI2LjctNDRjLTIuNC0xNy4yLTExLjctMzAuNC0yNi43LTM4YzAgMC05LTUuMS0yNi4xLTUuNWwtMjQgMS4xYy00Ny42IDIuMi00My45LjEtNDYuMy04LjJjLTYuMi0yMS44LTExLjEtMzAuOC0yMi45LTQyYy05LjItOC43LTEwLjQtMTItNi4zLTE2LjFjMi0yIDIuNy0uOCA2NC4xLTEuN2wyOS43LS40YzE3LS43IDQxLjMgMy40IDQxLjMgMy40YzIyLjMgMy42IDM2LjcgMTQuOCA1MS44IDMwYzE1LjQgMTUuNCAyMy42IDI5LjIgMjkuMSA0OC43YzUuMyAxOSA2LjEgMzUuMSAyLjUgNTMuNGMtNC42IDIzLjgtMTMuOSA0MS4xLTMxLjcgNTguOGMtMTUuMSAxNS4yLTI5LjEgMjQuOC01MC44IDMwLjljMCAwLTYuNiAxLjMtOS41IDEuN2MtMi44LjQtNjguMy4xLTY4LjMuMWMtMzcuMy4zLTY4LjkuMS03MC4zLS4yIi8+PC9zdmc+">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --accent-color: #6366f1;
+      --accent-hover: #4f46e5;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --error-bg: rgba(239, 68, 68, 0.15);
+      --error-text: #fca5a5;
+      --error-border: rgba(239, 68, 68, 0.3);
+    }
 
-        body {
-            background: radial-gradient(circle at top left, #1e1b4b, var(--bg-color));
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 420px;
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
+    body {
+      background: radial-gradient(circle at top left, #1e1b4b, var(--bg-color));
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
 
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
 
-        .header h1 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            margin-bottom: 0.5rem;
-        }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
 
-        .header p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+    .header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
 
-        .form-group {
-            margin-bottom: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
+    .header p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
 
-        label {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-main);
-        }
+    .form-group {
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
 
-        input {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: var(--text-main);
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.2s ease;
-        }
+    label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-main);
+    }
 
-        input:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-        }
+    input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
 
-        input::placeholder {
-            color: var(--text-muted);
-            opacity: 0.7;
-        }
+    input:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+    }
 
-        .btn-submit {
-            width: 100%;
-            padding: 0.85rem;
-            background: var(--accent-color);
-            color: #ffffff;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 0.5rem;
-            transition: all 0.2s ease;
-        }
+    input::placeholder {
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
 
-        .btn-submit:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
-        }
+    .btn-submit {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: all 0.2s ease;
+    }
 
-        .btn-submit:active {
-            transform: translateY(0);
-        }
+    .btn-submit:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
 
-        .footer-link {
-            text-align: center;
-            margin-top: 1.75rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
+    .btn-submit:active {
+      transform: translateY(0);
+    }
 
-        .footer-link a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: 0.25rem;
-            transition: color 0.2s ease;
-        }
+    .footer-link {
+      text-align: center;
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
 
-        .footer-link a:hover {
-            text-decoration: underline;
-        }
+    .footer-link a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 0.25rem;
+      transition: color 0.2s ease;
+    }
 
-        /* Responsive Fixes */
-        @media (max-width: 480px) {
-            .container {
-                padding: 1.75rem 1.25rem;
-            }
-        }
-    </style>
+    .footer-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Fixes */
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.75rem 1.25rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <div class="header">
-            <h1>Create Account</h1>
-            <p>Start generating and tracking your short links</p>
-        </div>
-
-        <form action="/user" method="post">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" required name="name" placeholder="Enter your full name">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" required name="email" placeholder="name@example.com">
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" required name="password" placeholder="Create a password">
-            </div>
-
-            <button type="submit" class="btn-submit">Sign Up</button>
-        </form>
-
-        <div class="footer-link">
-            Already have an account? 
-            <a href="/login">Log in</a>
-        </div>
+  <div class="container">
+    <div class="header">
+      <h1>Create Account</h1>
+      <p>Start generating and tracking your short links</p>
     </div>
 
+    <form action="/user" method="post">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required name="name" placeholder="Enter your full name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required name="email" placeholder="name@example.com">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required name="password" placeholder="Create a password">
+      </div>
+
+      <button type="submit" class="btn-submit">Sign Up</button>
+    </form>
+
+    <div class="footer-link">
+      Already have an account?
+      <a href="/login">Log in</a>
+    </div>
+  </div>
+
 </body>
+
 </html>
