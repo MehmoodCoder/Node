@@ -3,6 +3,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import dns from "node:dns";
+
+dns.setDefaultResultOrder("ipv4first");
 
 dotenv.config();
 
@@ -21,9 +24,15 @@ const port = process.env.PORT || 4000;
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-ConnectDB(process.env.MONGO_URL)
-  .then(() => console.log("DB Connected Successfully"))
-  .catch((err) => console.log("Error :", err));
+app.use(async (req, res, next) => {
+  try {
+    await ConnectDB(process.env.MONGO_URL);
+    next();
+  } catch (error) {
+    console.error("Database connection failure:", error);
+    res.status(500).send("Database Connection Failed");
+  }
+});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
