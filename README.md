@@ -98,10 +98,6 @@ A full-featured, secure **URL Shortener RESTful Web Application** built using **
 │   │   ├── ⚙️ package-lock.json
 │   │   └── ⚙️ package.json
 │   ├── 📁 First
-│   │   ├── 📁 my-docs
-│   │   ├── 📁 my-docx
-│   │   │   └── 📁 Folder
-│   │   │       └── 📁 File
 │   │   ├── 📄 contacts.txt
 │   │   ├── 📄 file.js
 │   │   ├── 📄 file.txt
@@ -158,10 +154,11 @@ A full-featured, secure **URL Shortener RESTful Web Application** built using **
 │   │   ├── 📄 login.ejs
 │   │   └── 📄 signup.ejs
 │   ├── ⚙️ .gitignore
-│   ├── 📄 connect.js
 │   ├── 📄 app.js
+│   ├── 📄 connect.js
 │   ├── ⚙️ package-lock.json
-│   └── ⚙️ package.json
+│   ├── ⚙️ package.json
+│   └── ⚙️ vercel.json
 └── 📝 README.md
 ```
 
