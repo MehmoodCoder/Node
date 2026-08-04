@@ -43,25 +43,6 @@ A full-featured, secure **URL Shortener RESTful Web Application** built using **
 
 ---
 
-### 🎯 Architecture & Modules Overview
-
-| Component / Module | Purpose |
-| :--- | :--- |
-| **`index.js`** | Main entry point; configures `dotenv`, EJS view engine, global middlewares (`cookie-parser`, `express.json`), DB connection, and routes. |
-| **`connect.js`** | Handles async database connection setup using Mongoose to connect with MongoDB. |
-| **`models/url.js`** | Mongoose schema for short links; stores `shortId`, `redirectURL`, `visitHistory`, and reference to `createdBy` user. |
-| **`models/user.js`** | Mongoose schema for authentication; manages user details including `name`, `email`, `password`, and `role` (`Normal`, `Admin`). |
-| **`controllers/url.js`** | Core URL business logic; generates unique `shortId`s via `nanoid` and logs click timestamps upon redirection. |
-| **`controllers/user.js`** | Handles user authentication logic (`HandleUserSignup`, `HandleUserLogin`) and sets JWT cookies. |
-| **`services/auth.js`** | Pure JWT token manager; encodes user payload on login (`setUser`) and decodes/verifies incoming tokens (`getUser`). |
-| **`middlewares/auth.js`** | Security layer (`AuthorizationHeaderVal`, `RestrictTo`); extracts JWT cookies and enforces role-based access control. |
-| **`routes/url.js`** | Protected URL endpoints (`POST /url`); restricted to authenticated roles (`Normal`, `Admin`). |
-| **`routes/static.js`** | Handles SSR page rendering for home dashboard (`/`), signup (`/signup`), and login (`/login`) views. |
-| **`routes/user.js`** | Endpoints for authentication workflows (`POST /user/signup`, `POST /user/login`). |
-| **`views/`** | Contains EJS template files (`home.ejs`, `signup.ejs`, `login.ejs`) for rendering the user interface. |
-
----
-
 ## 🛠️ Tech Stack & Dependencies
 
 | Tool / Library | Type | Purpose |
@@ -363,6 +344,25 @@ npm i dotenv
 ```
 
 **Note:**  Install pakages when needed
+
+---
+
+### 🎯 Architecture & Modules Overview
+
+| Component / Module | Purpose |
+| :--- | :--- |
+| **`index.js`** | Main entry point; configures `dotenv`, EJS view engine, global middlewares (`cookie-parser`, `express.json`), DB connection, and routes. |
+| **`connect.js`** | Handles async database connection setup using Mongoose to connect with MongoDB. |
+| **`models/url.js`** | Mongoose schema for short links; stores `shortId`, `redirectURL`, `visitHistory`, and reference to `createdBy` user. |
+| **`models/user.js`** | Mongoose schema for authentication; manages user details including `name`, `email`, `password`, and `role` (`Normal`, `Admin`). |
+| **`controllers/url.js`** | Core URL business logic; generates unique `shortId`s via `nanoid` and logs click timestamps upon redirection. |
+| **`controllers/user.js`** | Handles user authentication logic (`HandleUserSignup`, `HandleUserLogin`) and sets JWT cookies. |
+| **`services/auth.js`** | Pure JWT token manager; encodes user payload on login (`setUser`) and decodes/verifies incoming tokens (`getUser`). |
+| **`middlewares/auth.js`** | Security layer (`AuthorizationHeaderVal`, `RestrictTo`); extracts JWT cookies and enforces role-based access control. |
+| **`routes/url.js`** | Protected URL endpoints (`POST /url`); restricted to authenticated roles (`Normal`, `Admin`). |
+| **`routes/static.js`** | Handles SSR page rendering for home dashboard (`/`), signup (`/signup`), and login (`/login`) views. |
+| **`routes/user.js`** | Endpoints for authentication workflows (`POST /user/signup`, `POST /user/login`). |
+| **`views/`** | Contains EJS template files (`home.ejs`, `signup.ejs`, `login.ejs`) for rendering the user interface. |
 
 ---
 
