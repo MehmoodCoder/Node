@@ -33,10 +33,14 @@ export async function LogIn(req, res) {
 
     // return res.json({ token })
 
-    res.cookie('token', token, {
-        domain: 'localhost', // only for localhost by default
-        expires: new Date(Date.now() + 24 * 60 * 60 * 1000) // expires in 24 hours
-    })
+   const isProduction = process.env.NODE_ENV === "production";
+
+res.cookie('token', token, {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+});
 
     return res.redirect("/")
 }
