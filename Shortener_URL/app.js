@@ -1,24 +1,25 @@
 import express from "express";
-import path from 'path'
+import path from "path";
+import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
-
 import dotenv from "dotenv";
+
 dotenv.config();
 
 import URLRoute from "./routes/url.js";
 import StaticURLRoute from "./routes/static.js";
-import UserRoute from './routes/user.js'
-
+import UserRoute from "./routes/user.js";
 import ConnectDB from "./connect.js";
-
 import { AuthorizationHeaderVal, RestrictTo } from "./middlewares/auth.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.set("view engine", 'ejs')
-
-app.set("views", path.resolve('./views'))
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 ConnectDB(process.env.MONGO_URL)
   .then(() => console.log("DB Connected Successfully"))
@@ -30,8 +31,11 @@ app.use(cookieParser());
 app.use(AuthorizationHeaderVal);
 
 app.use("/", StaticURLRoute);
-app.use("/url", RestrictTo(['Normal', 'Admin']), URLRoute);
-app.use("/user", UserRoute)
+app.use("/url", RestrictTo(["Normal", "Admin"]), URLRoute);
+app.use("/user", UserRoute);
 
+if (process.env.NODE_ENV !== "production") {
+  app.listen(port, () => console.log("Server Started at port ", port));
+}
 
-app.listen(port, () => console.log("Server Started at port ", port));
+export default app;
