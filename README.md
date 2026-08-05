@@ -290,7 +290,7 @@ To enable modern ES6 `import/export` syntax instead of `require()`, open `packag
 ```
 
 ### 4. Installing Core Dependencies
-Run this command inside your project directory to install npm pakages in pakages.json file:
+Run this command inside your project directory to install npm packages in the package.json file:
 ```bash
 npm i express
 npm i mongoose
@@ -303,7 +303,7 @@ npm i jsonwebtoken
 npm i dotenv
 ```
 
-**It automatically Create package.json if not exists. Like**
+**It automatically creates package.json if not exist. Like**
 
 ```json
 {
@@ -322,7 +322,7 @@ npm i dotenv
     "url": "git+https://github.com/github.com/username.git"
   },
   "license": "ISC",
-  "author": "Auther",
+  "author": "Author",
   "type": "module",
   "main": "app.js",
   "scripts": {
@@ -343,7 +343,7 @@ npm i dotenv
 
 ```
 
-**Note:**  Install pakages when needed
+**Note:**  Install packages when needed
 
 ---
 
